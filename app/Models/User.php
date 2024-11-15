@@ -43,4 +43,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //Relacionamentos de 1:n, ou seja várias postagens
+    public function posts(){
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function profile(){
+        //Não é necessário escrever assim pois o namespace no topo do arquivo já definiu
+        //return $this->hasOne(\App\Models\Profile::class);
+        return $this->hasOne(Profile::class);
+    }
 }
