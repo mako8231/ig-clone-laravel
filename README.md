@@ -26,8 +26,18 @@ git clone https://github.com/mako8231/ig-clone-laravel
 cd ig-clone-laravel
 php artisan server
 
-#em outra sessão rode:
+#recomendado usar se você fizer alguma alteração como definir regras de autenticação que exijam a manipulação do vue/vite:
 npm install && npm run serve 
 ```
+
+### Extensão para a biblioteca Intervention:
+
+Estou usando a extensão GD, para instalar (no ubuntu) use:
+
+```bash
+sudo apt-get install php8.1-gd
+```
+
+
 
 
