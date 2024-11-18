@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 //Novos módulos de regras
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -52,6 +53,18 @@ class PostsController extends Controller
         //Redirecionando de fato para o perfil
         return redirect('/profile/' . auth()->user()->id);
         //\App\Models\Post::create($data);
+    }
 
+    public function show(\App\Models\Post $post)
+    {   
+        return view('posts.show', compact('post'));
+    }
+
+    public function index()
+    {
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(3);
+        return view("posts.index", ['posts' => $posts]);
     }
 }
